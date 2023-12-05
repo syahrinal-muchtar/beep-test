@@ -14,7 +14,7 @@ export default function Home({
     bindInput,
     bindOptions,
     bindOption,
-    isBusy,
+    isLoading,
     suggestions,
     selectedIndex,
   } = useAutoComplete({
@@ -39,7 +39,7 @@ export default function Home({
             disabled={isDisabled}
             {...bindInput}
           />
-          {isBusy && (
+          {isLoading && (
             <div className="w-4 h-4 border-2 border-dashed rounded-full border-slate-500 animate-spin"></div>
           )}
         </div>

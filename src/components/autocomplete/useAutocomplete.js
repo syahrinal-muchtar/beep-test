@@ -13,7 +13,7 @@ export default function useAutoComplete({ delay = 500, source, onChange, isSearc
   const [myTimeout, setMyTimeOut] = useState(setTimeout(() => {}, 0));
   const listRef = useRef();
   const [suggestions, setSuggestions] = useState([]);
-  const [isBusy, setBusy] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [textValue, setTextValue] = useState("");
 
@@ -45,12 +45,12 @@ export default function useAutoComplete({ delay = 500, source, onChange, isSearc
   };
 
   const onTextChange = (searchTerm) => {
-    setBusy(true);
+    setIsLoading(true);
     setTextValue(searchTerm);
     clearSuggestions();
     delayInvoke(() => {
       getSuggestions(searchTerm);
-      setBusy(false);
+      setIsLoading(false);
     });
   };
 
@@ -116,7 +116,7 @@ export default function useAutoComplete({ delay = 500, source, onChange, isSearc
     bindOptions: {
       ref: listRef,
     },
-    isBusy,
+    isLoading,
     suggestions,
     selectedIndex,
   };
